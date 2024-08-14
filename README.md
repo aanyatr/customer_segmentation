@@ -126,25 +126,29 @@ pre-existing segmented_data table to ensure the table we have is correct.
     1. Convert categorical data into numeric data through encoding techniques.
 Normalize or standardize the numerical data after that (standard scalar, min-max scalar).
 Split the user_pseudo column and activity date in another dataframe df2 (redundant for clustering).
+
 Cluster the data to check how many clusters through both silhouette score and elbow score, though silhouette score is a better method. 
 Visualize the data and clusters, and graphs.
+
 After clustering is done, join the dataframe with df2 based on index. 
 Change the derived columns logic don’t use numbers using dynamic logic such as percentile. 
 Understand the micro behaviors from the clusters then you make the problem supervised.
+
 Need to convert categorical data?
 In its original form categorical data cannot be utilized by machine learning algorithms to derive valuable insights as algorithms don’t know how to deal with categories but numeric values on which they are formed. Thus leading to flawed results if computation were to occur in their original form. 
 Understanding the nature of categorical data is imperative in choosing the method to convert them. 
+
 To first classify the variables as nominal and ordinal.
 All variables can be classified as nominal variables 
 but we can classify Customer_Behaviour as ordinal. 
+
 Techniques to convert categorical variables into numerical variables:
 Suitable for nominal variables:
- SNO
+
 Encoding Technique
-Points to remember:
 Implementation
 
-One-hot Encoding
+1. One-hot Encoding
 To use where unique cases of data are less for columns i.e. up to 10 should be fine.
 It increases data dimensionality immensely as the data contains many sparse matrices. 
 Col1 values: red, blue, green, orange
@@ -152,36 +156,32 @@ Now these values will form 4 new columns:
 col1values_red, col1values_blue,col1values_green  col1values_orange. 
 With 0 indicating they don’t have a particular value and 1 indicating it does.
 
-Binary Encoding
+2. Binary Encoding
 Mid-ground between label and one-hot encoding.
 It is better suited for nominal variables with many categories, as lesser data dimensionality increases as compared to one-hot-encoding. 
 Converts the nominal variables to integers and then to their binary format. 
 
-Frequency Encoding
+3. Frequency Encoding
 Computes the frequency of each categorical nominal variable, not suitable in cases where the frequency is the same for values in a particular column.
 The data will not be able to show that difference properly, thus loss of categorical info. 
 Doesn’t increase dimensionality of data.
 
-BaseN encoding
+4. BaseN encoding
 
 Suitable for ordinal variables:
 
-S.NO
-Encoding Techniques
-Points to remember
-Implementation
-
-Label Encoding
+1. Label Encoding
 Label Encoding is best suited to ordinal categorical variables, where the categories have a logical order or progression. 
 
-Ordinal Encoding
+2. Ordinal Encoding
 Preserves the order of the categories in ordinal variables, though the degree of difference cannot be determined exactly and thus it treats the degree of difference as the same. Can lead to misleading results with nominal variables.
 
-Other encoding techniques:
+### Other encoding techniques:
 Mean Encoding(encode based on mean of target variable, can lead to overfitting, but doesn’t increase dimensionality of data)
 Helmert Encoding
 Hash Encoding
 Target Encoding (applied for supervised problems can’t be utilized here)
+
 Nominal variables in our data:
 City
 Country
@@ -191,19 +191,14 @@ Metro
 Region 
 Customer-Behaviour
 As the number of values for most of these columns are very high, we decide to use binary encoding on these columns above.
-Resources:
-Converting Categorical Data into Numerical Form: A Practical Guide for Data Science | by Brandon Wohlwend | Medium
-How to Convert Categorical Data in Pandas and Scikit-learn
-What are Categorical Data Encoding Methods | Binary Encoding
-Types of Categorical Data Encoding Schemes | by Lakshay Arora | Analytics Vidhya | Medium
+
 Standardization of Data:
 Apart from the columns, user_pseudo_id and lastest_activity_date all other columns are standardized using Standard Scalar. 
 As these columns are split and stored in another column.
 Applying K-Means:
 Resources:
-2.3. Clustering — scikit-learn 1.5.0 documentation
-Silhouette Coefficient. This is my first medium story, so… | by Ashutosh Bhardwaj | Towards Data Science.
-Introduction to K-Means Clustering Algorithm
+
+## Introduction to K-Means Clustering Algorithm
 K-Mean: Getting the Optimal Number of Clusters
 Things to know:
 A Voronoi Diagram can be used to better understand the implementation of K-Means.
